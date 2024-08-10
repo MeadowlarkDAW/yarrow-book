@@ -1,2 +1,3 @@
 # yarrow-book
-A guide for the Yarrow GUI framework
+
+The official online book for the Yarrow GUI framework

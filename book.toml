@@ -1,0 +1,6 @@
+[book]
+authors = ["Billy Messenger"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Yarrow GUI Framework"
