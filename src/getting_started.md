@@ -2,7 +2,7 @@
 
 ## Installing Rust
 
-The Yarrow framework is built using the Rust programming language. Currently, to use Yarrow, you must install the Rust compiler by following the instructions over at [https://www.rust-lang.org/learn/get-started](https://www.rust-lang.org/learn/get-started).
+The Yarrow framework is built using the Rust programming language. To use Yarrow, you must install the Rust compiler by following the instructions over at [https://www.rust-lang.org/learn/get-started](https://www.rust-lang.org/learn/get-started).
 
 ## Running the Examples
 

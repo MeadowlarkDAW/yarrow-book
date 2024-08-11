@@ -27,7 +27,6 @@ impl MyStyle {
                         width: 2.0,
                         radius: 10.0.into(),
                     },
-                    ..Default::default()
                 },
                 text_padding: Padding::new(10.0, 10.0, 10.0, 10.0),
                 ..Default::default() // 6
