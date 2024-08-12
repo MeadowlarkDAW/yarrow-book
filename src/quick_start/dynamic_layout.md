@@ -1,6 +1,6 @@
 # Dynamic Layout
 
-Setting the bounding rectangle inside via element builder works fine for static content, but what if we wanted the layout to dynamically change due to a change in the application state (or the window being resized)? And for that matter, what if we wanted to layout other elements based on the size of the text in the label element?
+Setting the bounding rectangle via the element builder works fine for static content, but what if we wanted the layout to dynamically change due to a change in the application state (or the window being resized)? And for that matter, what if we wanted to layout other elements based on the size of the text in the label element?
 
 To achieve this, we will define a "layout function" for our main window. Remove the `.rect` property from the Label builder and then add the following method to `MainWindowElements`:
 
@@ -25,6 +25,8 @@ impl MainWindowElements {
 2. Get the size of the window from the window context. Also convert that size into a rectangle for ease of use later (Yarrow uses [euclid](https://crates.io/crates/euclid) for geometric types).
 3. Create a rectangle that is centered inside of `window_rect` using the provided helper method.
 4. Set the bounding rectangle via the label element's handle. Note the `.el` in the middle. Every element handle has a generic `el` field with generic methods that are shared by all element types. For example, the generic `el` field also has a `rect()` method that can retrieve the current bounding rectangle of the element, which is very useful when the layout of some elements depend on the layout of other elements.
+
+Also note that setting the bounding rectangle via the element's handle will not trigger an update in Yarrow's system unless that rectangle has changed. Therefore you can still get good performance even when you have a single layout function like this. However, if the performance still isn't good enough, you can change it to be as optimized and fine-grained as you wish. You are in control!
 
 > Note that the same effect can be achieved by using the `layout_aligned` method on the `Label` handle:
 > ```rust
