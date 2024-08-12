@@ -21,14 +21,10 @@ impl MyStyle {
             true, // 4
             LabelStyle { // 5
                 back_quad: QuadStyle {
-                    bg: Background::Solid(RGBA8::new(100, 30, 80, 255)),
-                    border: BorderStyle {
-                        color: RGBA8::new(200, 60, 160, 255),
-                        width: 2.0,
-                        radius: 10.0.into(),
-                    },
+                    bg: background_hex(0x641e50),
+                    border: border(hex(0xc83ca0), 2.0, radius(10.0)),
                 },
-                text_padding: Padding::new(10.0, 10.0, 10.0, 10.0),
+                text_padding: padding_all_same(10.0),
                 ..Default::default() // 6
             },
         );
@@ -46,22 +42,12 @@ impl MyStyle {
 Now store our new style struct in `MyApp` and load it when the application starts:
 
 ```rust
+#[derive(Default)]
 struct MyApp {
     // ...
 
     // new
     style: MyStyle,
-}
-
-impl MyApp {
-    fn new(action_sender: ActionSender<()>, action_receiver: ActionReceiver<()>) -> Self {
-        Self {
-            // ...
-            
-            // new
-            style: MyStyle::default(),
-        }
-    }
 }
 
 impl Application for MyApp {
@@ -102,7 +88,7 @@ By default all elements have a style which is very bare-bones (and most of the t
 At the time of this writing, Yarrow has only one built-in theme called "Yarrow dark". To use it, simply add this inside of `MyStyle::load()`:
 
 ```rust
-yarrow::theme::yarrow_dark::load(None, None, res);
+yarrow::theme::yarrow_dark::load(Default::default(), res);
 ```
 
 After loading a theme, it's probably a good idea to use a class for our custom fancy label so it doesn't conflict with the default one in the theme:

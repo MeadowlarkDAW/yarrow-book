@@ -12,31 +12,14 @@ pub struct MainWindowElements {
 }
 ```
 
-Why can't we just add `hello_label` directly to our `MyApp` struct? The reason is that a Yarrow application is designed to work even when the main window isn't open. This is a useful concept for audio plugins. Plus, this allows the same behavior to work for both the main window and any child windows in our application (Yarrow has first-class multi-window support!)
+So why can't we just add `hello_label` directly to our `MyApp` struct? The reason is that Yarrow applications are designed to work even when the main window isn't open. Not only is this a useful concept for audio plugins, but this allows the same behavior to work for both the main window and any child windows in our application (Yarrow has first-class multi-window support!)
 
 Now add the following field to the `MyApp` struct:
 
 ```rust
+#[derive(Default)]
 struct MyApp {
     main_window_elements: Option<MainWindowElements>, // new
-
-    _action_sender: ActionSender<()>,
-    _action_receiver: ActionReceiver<()>,
-}
-```
-
-And in `MyApp::new()`:
-```rust
-fn new(
-    action_sender: ActionSender<()>,
-    action_receiver: ActionReceiver<()>
-) -> Self {
-    Self {
-        main_window_elements: None, // new
-
-        _action_sender: action_sender,
-        _action_receiver: action_receiver,
-    }
 }
 ```
 

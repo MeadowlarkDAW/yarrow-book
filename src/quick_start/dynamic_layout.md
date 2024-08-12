@@ -1,8 +1,8 @@
 # Dynamic Layout
 
-Setting the bounding rectangle inside of the element builder works great and all for static content, but what if we wanted the layout to dynamically change due to a change in the application state (or the window being resized)? And for that matter, what if we wanted to layout other elements based on the size of the text in the label element?
+Setting the bounding rectangle inside via element builder works fine for static content, but what if we wanted the layout to dynamically change due to a change in the application state (or the window being resized)? And for that matter, what if we wanted to layout other elements based on the size of the text in the label element?
 
-To achieve this, we will define a "layout function" for our main window. Remove the `.bounding_rect` property from the Label builder and then add the following method to `MainWindowElements`:
+To achieve this, we will define a "layout function" for our main window. Remove the `.rect` property from the Label builder and then add the following method to `MainWindowElements`:
 
 ```rust
 impl MainWindowElements {
@@ -32,7 +32,7 @@ impl MainWindowElements {
 > self.hello_label.layout_aligned(window_rect.center(), Align2::CENTER, cx.res);
 > ```
 
-No we must call the layout function after the main window is built and whenever the window resizes. To do this, add the following to the `on_window_event` trait method:
+Now we must call that layout function after the main window is built and whenever the window resizes. To do this, add the following to the `on_window_event` trait method:
 
 ```rust
 fn on_window_event(
