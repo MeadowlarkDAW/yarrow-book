@@ -15,10 +15,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-yarrow = { git = "https://github.com/MeadowlarkDAW/Yarrow.git", rev = "ddc9636363e319be910d701686403a2f1348ebf0" }
+yarrow = { git = "https://github.com/MeadowlarkDAW/Yarrow.git", rev = "8911e3e102883316641431597bbc771f91350853" }
 ```
 
 > Yarrow does not have a recent version published on crates.io yet, so you will need to use the git version for now.
+>
+> You can update the revision number to the [latest commit hash from the GitHub repository](https://github.com/MeadowlarkDAW/Yarrow/commits/main/). You can also choose to instead use `branch = "main"`, but keep in mind this may introduce breaking changes.
 
 ## Enabling Additional Optimizations
 
@@ -35,35 +37,36 @@ This tells cargo to enable a small amount of optimizations when compiling in deb
 
 In `main.rs`, replace the default contents with the following:
 
-```rust
+```rust,no_run
 use yarrow::prelude::*; // 1
 
-pub fn main() {
-    let (action_sender, action_receiver) = yarrow::action_channel(); // 2
-
-    yarrow::run_blocking( // 3
-        MyApp::default(),
-        action_sender,
-    )
-    .unwrap();
-}
+#[derive(Clone)]
+pub enum MyAction {} // 2
 
 #[derive(Default)]
-struct MyApp {} // 4
+struct MyApp {} // 3
 
-impl Application for MyApp { // 5
-    type Action = (); // 6
+impl Application for MyApp { // 4
+    type Action = MyAction; // 5
+}
+
+pub fn main() {
+    let (action_sender, action_receiver) = yarrow::action_channel(); // 6
+
+    // 7
+    yarrow::run_blocking(MyApp::default(), action_sender, action_receiver).unwrap();
 }
 ```
 
 Here is a breakdown of what is happening:
 
 1. Import a bunch of types from Yarrow. For simplicity, Yarrow provides a `prelude` module that re-exports most of everything you need.
-2. Create an action channel. We will cover what actions are and how they work later in this chapter. For now just know this is essentially an [mpsc](https://doc.rust-lang.org/std/sync/mpsc/) channel from Rust's standard library.
-3. Run the application. For standalone applications you will want to use `run_blocking`, but Yarrow contains other methods for running in different contexts (like an audio plugin).
-4. Our application struct. This is where we will store everything related to our application.
-5. The `yarrow::Application` trait. We must implement this for our application object.
-6. Define the type to use as our applications's action enum. For now we have no actions, so set it to the empty type `()`.
+2. Our application's Action enum type. We will cover what actions are and how they work later in this tutorial. For now we have no actions, so leave it empty. (Note that your action type must implement [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html).)
+3. Our application struct. This is where we will store everything related to our application.
+4. The `yarrow::Application` trait. We must implement this for our application object.
+5. Define the type to use as our applications's action enum.
+6. Create an action channel. This is essentially an [mpsc](https://doc.rust-lang.org/std/sync/mpsc/) channel from Rust's standard library.
+7. Run the application. For standalone applications you will want to use `run_blocking`, but Yarrow contains other methods for running in different contexts (like an audio plugin).
 
 ## Running the Application
 
