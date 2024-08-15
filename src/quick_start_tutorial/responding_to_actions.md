@@ -99,6 +99,7 @@ pub enum MyAction {
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
@@ -236,6 +237,7 @@ impl MyApp {
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
@@ -385,6 +387,7 @@ impl MainWindowElements {
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
@@ -560,6 +563,7 @@ impl Default for MyStyle {
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
@@ -773,6 +777,7 @@ impl Application for MyApp {
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
@@ -989,6 +994,7 @@ One strategy is to pass around a bool like this:
 #                 back_quad: QuadStyle {
 #                     bg: background_hex(0x641e50),
 #                     border: border(hex(0xc83ca0), 2.0, radius(10.0)),
+#                     ..Default::default()
 #                 },
 #                 text_padding: padding_all_same(10.0),
 #                 ..Default::default()
