@@ -15,7 +15,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-yarrow = { git = "https://github.com/MeadowlarkDAW/Yarrow.git", rev = "101d141b084c7067a27b59cde20383d07fb05bee" }
+yarrow = { git = "https://github.com/MeadowlarkDAW/Yarrow.git", rev = "5b14326ea41e762a7b941147d0c7d32279abc63b" }
 ```
 
 > Yarrow does not have a recent version published on crates.io yet, so you will need to use the git version for now.
