@@ -15,3 +15,11 @@
 
 - [Element Z Indexes](./key_concepts/element_z_indexes.md)
 - [Scissoring Rectangles](./key_concepts/scissoring_rectangles.md)
+
+# Advanced Concepts
+
+- [Custom Elements](./custom_elements.md)
+    - [Style Struct](./custom_elements/style_struct.md)
+    - [Builder](./custom_elements/builder.md)
+    - [Implementation](./custom_elements/implementation.md)
+        - [Construction](./custom_elements/implementation/construction.md)

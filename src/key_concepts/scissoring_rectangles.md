@@ -165,7 +165,7 @@ If we set the scroll offset vector from the example above, notice how the elemen
 
 # Scroll Areas
 
-You probably want to add a scrollbar and have the scroll offset changed via the mouse's scroll wheel. To do this, you use the `ScrollArea` element in Yarrow.
+You probably want to add a scrollbar and have the scroll offset change via the mouse's scroll wheel. To do this, you use the `ScrollArea` element in Yarrow.
 
 As an added bonus, you can set a `ScrollArea` element to "control" a scissoring rectangle, meaning that it will automatically update the scissoring rectangle's position, size, and scroll offset to match that of the `ScrollArea` element.
 
